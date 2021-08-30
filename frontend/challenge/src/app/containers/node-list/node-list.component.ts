@@ -1,9 +1,9 @@
-import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 import { Component, OnInit } from '@angular/core';
 
-import { INode } from '../../models/node';
-import { NodeService } from '../../services/node.service';
+import { Node } from '../../models';
+import { NodesStore } from '../../store/nodes.store';
 
 @Component({
   selector: 'app-node-list',
@@ -11,17 +11,12 @@ import { NodeService } from '../../services/node.service';
   styleUrls: ['./node-list.component.scss']
 })
 export class NodeListComponent implements OnInit {
-  public nodes: INode[] = [];
+  public nodes$: Observable<Node[]> = new Observable<Node[]>();
 
-  constructor(private nodeService: NodeService, private toastr: ToastrService) {}
+  constructor(private nodeStore: NodesStore) {}
 
-  async ngOnInit(): Promise<void> {
-    try {
-      this.nodes = await this.nodeService.getNodes();
-      this.toastr.success('Nodes loaded', 'Success');
-    } catch (error) {
-      console.log(error);
-      this.toastr.error('Loading of Nodes failed', 'Error');
-    }
+  ngOnInit(): void {
+    this.nodeStore.getStatus();
+    this.nodes$ = this.nodeStore.state$;
   }
 }

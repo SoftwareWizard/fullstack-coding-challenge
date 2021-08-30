@@ -1,27 +1,17 @@
-import { Status } from 'src/app/models/status';
+import { Component, Input } from '@angular/core';
 
-import { Component, Input, OnInit } from '@angular/core';
-
-import { INode } from '../../models/node';
+import { Node } from '../../models';
 
 @Component({
   selector: 'app-node-detail',
   templateUrl: './node-detail.component.html',
   styleUrls: ['./node-detail.component.scss']
 })
-export class NodeDetailComponent implements OnInit {
-  @Input() node: INode = {} as INode;
+export class NodeDetailComponent {
+  @Input() node: Node = {} as Node;
   @Input() isExpanded: boolean = false;
 
-  public statusText = new Map([
-    [Status.success, 'online'],
-    [Status.failure, 'offline'],
-    [Status.start, 'starting']
-  ]);
-
   constructor() {}
-
-  ngOnInit(): void {}
 
   public onToggle(): void {
     this.isExpanded = !this.isExpanded;

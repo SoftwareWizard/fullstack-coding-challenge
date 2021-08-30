@@ -1,4 +1,4 @@
 <div class="block-detail-container p-2 pe-3">
-  <div class="block-detail-header">{{ block.blockNumber | number: "3.0-0"}}</div>
-  <div class="block-detail-description">{{ block.description }}</div>
+  <div class="block-detail-header">{{ block.attributes.index | number: '3.0-0' }}</div>
+  <div class="block-detail-description">{{ block.attributes.data }}</div>
 </div>

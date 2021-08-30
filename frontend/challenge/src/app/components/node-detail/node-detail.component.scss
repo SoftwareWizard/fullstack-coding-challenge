@@ -26,28 +26,28 @@ $border-color: rgb(221, 221, 221);
       width: 100px;
     }
 
-    .status {
-      text-transform: uppercase;
-    }
+    // .status {
+    //   text-transform: uppercase;
+    // }
 
-    .circle {
-      height: 15px;
-      width: 15px;
-      border-radius: 50%;
-      border: 1px solid black;
+    // .circle {
+    //   height: 15px;
+    //   width: 15px;
+    //   border-radius: 50%;
+    //   border: 1px solid black;
 
-      &-SUCCESS {
-        background-color: green;
-      }
+    //   &-SUCCESS {
+    //     background-color: green;
+    //   }
 
-      &-FAILURE {
-        background-color: red;
-      }
+    //   &-FAILURE {
+    //     background-color: red;
+    //   }
 
-      &-START {
-        background-color: yellow;
-      }
-    }
+    //   &-START {
+    //     background-color: yellow;
+    //   }
+    // }
 
     i {
       color: black;

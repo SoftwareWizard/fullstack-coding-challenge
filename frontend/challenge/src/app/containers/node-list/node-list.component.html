@@ -1,4 +1,4 @@
 <h2>Nodes</h2>
 <div class="node-list-container">
-  <app-node-detail *ngFor="let node of nodes" [node]="node"></app-node-detail>
+  <app-node-detail *ngFor="let node of nodes$ | async" [node]="node"></app-node-detail>
 </div>
