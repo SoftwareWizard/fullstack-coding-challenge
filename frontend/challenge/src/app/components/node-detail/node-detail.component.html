@@ -6,9 +6,7 @@
         <div class="url">{{ node.url }}</div>
       </div>
       <div class="d-inline-flex align-items-center status-container">
-        {{ node.loading }} / {{ node.online }}
-        <!-- <div class="circle circle-{{node.state}}"></div>
-        <div class="status p-2">{{ statusText.get(node.state) }}</div> -->
+        <app-node-status [isOnline]="node.online" [isLoading]="node.loading"></app-node-status>
       </div>
     </div>
     <div>

@@ -1,0 +1,13 @@
+<div *ngIf="isLoading; else loaded">
+  <div class="loading-ellipsis">
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<ng-template #loaded>
+  <div>
+    <div class="status-circle" [ngClass]="{ success: isOnline, failure: !isOnline }"></div>
+    <div class="status-text p-2">{{ statusText.get(isOnline) }}</div>
+  </div>
+</ng-template>

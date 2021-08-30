@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { BlockDetailComponent, NodeDetailComponent } from './components';
 import { BlockListComponent, NodeListComponent, ShellComponent } from './containers';
+import { NodeStatusComponent } from './components/node-status/node-status.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BlockListComponent, NodeListComponent, ShellComponent } from './contain
     NodeListComponent,
     NodeDetailComponent,
     BlockListComponent,
-    BlockDetailComponent
+    BlockDetailComponent,
+    NodeStatusComponent
   ],
   imports: [
     CommonModule,
