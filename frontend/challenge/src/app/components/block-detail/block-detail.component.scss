@@ -1,0 +1,15 @@
+.block-detail {
+  &-container {
+    background-color: lightgray;
+    border-radius: 5px;
+  }
+
+  &-header {
+    color: rgb(112, 0, 146);
+    font-weight: bold;
+  }
+
+  &-description {
+    color: black;
+  }
+}

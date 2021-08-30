@@ -1,0 +1,76 @@
+$padding: 10px 15px;
+$border-color: rgb(221, 221, 221);
+
+.node-detail-container {
+  margin-bottom: 10px;
+  border: 1px solid $border-color;
+  border-radius: 5px;
+  box-shadow: 2px 3px lightgray;
+
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: $padding;
+
+    .name {
+      font-size: x-large;
+    }
+
+    .url {
+      font-size: small;
+      color: grey;
+    }
+
+    .status-container {
+      width: 100px;
+    }
+
+    .status {
+      text-transform: uppercase;
+    }
+
+    .circle {
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+      border: 1px solid black;
+
+      &-SUCCESS {
+        background-color: green;
+      }
+
+      &-FAILURE {
+        background-color: red;
+      }
+
+      &-START {
+        background-color: yellow;
+      }
+    }
+
+    i {
+      color: black;
+      cursor: pointer;
+
+      &.is-expanded {
+        transform: rotate(+180deg);
+      }
+    }
+
+    .expand-button {
+      border: 0px;
+      background-color: unset;
+    }
+  }
+
+  .content {
+    padding: $padding;
+    display: none;
+    user-select: unset;
+
+    &.is-expanded {
+      display: block;
+    }
+  }
+}

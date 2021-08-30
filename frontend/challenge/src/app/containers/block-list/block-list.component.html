@@ -1,0 +1,10 @@
+<div *ngIf="blocks && blocks.length > 0; else noBlocks">
+  <div *ngFor="let block of blocks">
+    <div class="mb-1">
+      <app-block-detail [block]="block"></app-block-detail>
+    </div>
+  </div>
+</div>
+<ng-template #noBlocks>
+  <span class="text-danger" #noBlocks>Error while reading blocks</span>
+</ng-template>

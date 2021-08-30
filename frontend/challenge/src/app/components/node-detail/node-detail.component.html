@@ -1,0 +1,20 @@
+<div class="node-detail-container">
+  <div class="header">
+    <div class="d-flex justify-content-between">
+      <div>
+        <div class="name">{{ node.name }}</div>
+        <div class="url">{{ node.url }}</div>
+      </div>
+      <div class="d-inline-flex align-items-center status-container">
+        <div class="circle circle-{{node.state}}"></div>
+        <div class="status p-2">{{ statusText.get(node.state) }}</div>
+      </div>
+    </div>
+    <div>
+      <button class="expand-button" (click)="onToggle()"><i class="fa fa-chevron-down" [class.is-expanded]="isExpanded" ></i></button>
+    </div>
+  </div>
+  <div class="content" [class.is-expanded]="isExpanded">
+    <app-block-list *ngIf="isExpanded" [nodeId]="node.id"></app-block-list>
+  </div>
+</div>

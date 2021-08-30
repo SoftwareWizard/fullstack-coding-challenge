@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Primary Node",
+    "url": "http://dummy.com/primary",
+    "state": "SUCCESS"
+  },
+  {
+    "id": "2",
+    "name": "Secondary Node",
+    "url": "http://dummy.com/secondary",
+    "state": "FAILURE"
+  },
+  {
+    "id": "3",
+    "name": "Tertiary Node",
+    "url": "http://dummy.com/tertiary",
+    "state": "START"
+  },
+  {
+    "id": "4",
+    "name": "Quartery Node",
+    "url": "http://dummy.com/quartery",
+    "state": "SUCCESS"
+  }
+]
