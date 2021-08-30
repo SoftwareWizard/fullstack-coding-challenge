@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { IBlock } from 'src/app/models';
+import { Block } from 'src/app/models';
 
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -12,7 +12,7 @@ import { NodeService } from '../../services/node.service';
 })
 export class BlockListComponent implements OnInit {
   @Input() nodeId: string = '';
-  public blocks: IBlock[] = [];
+  public blocks: Block[] = [];
 
   constructor(private nodeService: NodeService, private toastr: ToastrService) {}
 

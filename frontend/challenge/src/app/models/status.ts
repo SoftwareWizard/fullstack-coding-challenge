@@ -1,5 +1,3 @@
-export enum Status {
-  success = "SUCCESS",
-  failure = "FAILURE",
-  start = "START"
-};
+export interface Status {
+  node_name: string;
+}

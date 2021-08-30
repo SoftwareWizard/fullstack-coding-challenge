@@ -1,26 +1,26 @@
 [
   {
-    "id": "1",
-    "name": "Primary Node",
-    "url": "http://dummy.com/primary",
-    "state": "SUCCESS"
+    "url": "https://thawing-springs-53971.herokuapp.com",
+    "online": false,
+    "name": "Node 1",
+    "loading": true
   },
   {
-    "id": "2",
-    "name": "Secondary Node",
-    "url": "http://dummy.com/secondary",
-    "state": "FAILURE"
+    "url": "https://secret-lowlands-62331.herokuapp.com",
+    "online": false,
+    "name": "Node 2",
+    "loading": true
   },
   {
-    "id": "3",
-    "name": "Tertiary Node",
-    "url": "http://dummy.com/tertiary",
-    "state": "START"
+    "url": "https://calm-anchorage-82141.herokuapp.com",
+    "online": false,
+    "name": "Node 3",
+    "loading": true
   },
   {
-    "id": "4",
-    "name": "Quartery Node",
-    "url": "http://dummy.com/quartery",
-    "state": "SUCCESS"
+    "url": "http://localhost:3002",
+    "online": false,
+    "name": "Node 4",
+    "loading": true
   }
-]
+];

@@ -1,4 +1,4 @@
-import { IBlock } from 'src/app/models';
+import { Block } from 'src/app/models';
 
 import { Component, Input } from '@angular/core';
 
@@ -8,5 +8,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./block-detail.component.scss']
 })
 export class BlockDetailComponent {
-  @Input() block: IBlock = {} as IBlock;
+  @Input() block: Block = {} as Block;
 }

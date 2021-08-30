@@ -1,8 +1,7 @@
-import { Status } from './status';
-
-export interface INode {
-  id: string;
-  name: string;
+export interface Node {
   url: string;
-  state: Status;
+  online: boolean;
+  name: string;
+  loading: boolean;
+  status?: string;
 }

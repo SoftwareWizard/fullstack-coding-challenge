@@ -1,6 +1,7 @@
-export interface IBlock {
+import { BlockAttributes } from './block-attributes';
+
+export interface Block {
   id: string;
-  blockNumber: number;
-  nodeId: string;
-  description: string;
+  type: string;
+  attributes: BlockAttributes;
 }
