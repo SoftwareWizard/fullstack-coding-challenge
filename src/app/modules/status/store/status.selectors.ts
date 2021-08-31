@@ -1,7 +1,9 @@
-import { createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromStatus from './status.reducer';
 
-export const selectStatusState = createFeatureSelector<fromStatus.State>(
+const selectStatusState = createFeatureSelector<fromStatus.StatusState>(
   fromStatus.statusFeatureKey
 );
+
+export const counter = createSelector(selectStatusState, state => state.counter);
