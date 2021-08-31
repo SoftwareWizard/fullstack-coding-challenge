@@ -5,7 +5,6 @@ import { StoreModule } from '@ngrx/store';
 
 import { SharedModule } from '../../shared/shared.module';
 import { BlockDetailComponent, NodeDetailComponent, NodeStatusComponent } from './components';
-import { CounterComponent } from './components/counter/counter.component';
 import { BlockListComponent, NodeListComponent } from './containers';
 import { StatusRoutingModule } from './status.routing.module';
 import { StatusEffects } from './store/status.effects';
@@ -20,7 +19,7 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, CounterComponent],
+  declarations: [...COMPONENTS],
   imports: [
     CommonModule,
     SharedModule,

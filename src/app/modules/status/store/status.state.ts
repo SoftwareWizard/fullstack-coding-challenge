@@ -1,11 +1,9 @@
 export const statusFeatureKey = 'status';
 
 export interface StatusState {
-  counter: number;
-  isLoading: boolean;
+  nodes: Node[];
 }
 
 export const initialStatusState: StatusState = {
-  counter: 0,
-  isLoading: false
+  nodes: []
 };

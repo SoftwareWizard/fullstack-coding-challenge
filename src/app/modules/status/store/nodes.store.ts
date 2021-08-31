@@ -23,7 +23,7 @@ export class NodesStore extends Store<Node[]> {
 
   private _getStatus(): Observable<Node[]> {
     const status = this.state.map(node => {
-      return this.nodeService.getNodes(node.url).pipe(
+      return this.nodeService.getStatus(node.url).pipe(
         catchError(error => {
           console.error(error);
           return of(null);

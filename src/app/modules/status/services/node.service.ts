@@ -18,7 +18,7 @@ interface Blocks {
 export class NodeService {
   constructor(private http: HttpClient) {}
 
-  public getNodes(url: string): Observable<Status> {
+  public getStatus(url: string): Observable<Status> {
     return this.http.get<Status>(`${url}/${API_SEGMENT}/status`);
   }
 
