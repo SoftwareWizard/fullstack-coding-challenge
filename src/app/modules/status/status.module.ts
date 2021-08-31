@@ -5,11 +5,11 @@ import { StoreModule } from '@ngrx/store';
 
 import { SharedModule } from '../../shared/shared.module';
 import { BlockDetailComponent, NodeDetailComponent, NodeStatusComponent } from './components';
+import { CounterComponent } from './components/counter/counter.component';
 import { BlockListComponent, NodeListComponent } from './containers';
 import { StatusRoutingModule } from './status.routing.module';
 import { StatusEffects } from './store/status.effects';
-import * as fromStatus from './store/status.reducer';
-import { CounterComponent } from './components/counter/counter.component';
+import * as statusFacade from './store/status.facade';
 
 const COMPONENTS = [
   NodeListComponent,
@@ -25,7 +25,9 @@ const COMPONENTS = [
     CommonModule,
     SharedModule,
     StatusRoutingModule,
-    StoreModule.forFeature(fromStatus.statusFeatureKey, fromStatus.reducer),
+    StoreModule.forFeature(statusFacade.featureKey, statusFacade.statusReducer, {
+      metaReducers: statusFacade.metaReducers
+    }),
     EffectsModule.forFeature([StatusEffects])
   ]
 })

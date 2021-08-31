@@ -1,11 +1,8 @@
 import { Observable } from 'rxjs';
 
 import { Component } from '@angular/core';
-import { select, Store } from '@ngrx/store';
 
-import { decrement, increment, reset } from '../../store/status.actions';
-import { StatusState } from '../../store/status.reducer';
-import { counter } from '../../store/status.selectors';
+import { StatusFacade } from '../../store/status.facade';
 
 @Component({
   selector: 'app-counter',
@@ -14,19 +11,19 @@ import { counter } from '../../store/status.selectors';
 export class CounterComponent {
   public count$: Observable<number>;
 
-  constructor(private store: Store<StatusState>) {
-    this.count$ = this.store.pipe(select(counter));
+  constructor(private statusFacade: StatusFacade) {
+    this.count$ = this.statusFacade.select.counter;
   }
 
   increment() {
-    this.store.dispatch(increment());
+    this.statusFacade.increment.dispatch();
   }
 
   decrement() {
-    this.store.dispatch(decrement());
+    this.statusFacade.decrement.dispatch();
   }
 
   reset() {
-    this.store.dispatch(reset());
+    this.statusFacade.reset.dispatch();
   }
 }
