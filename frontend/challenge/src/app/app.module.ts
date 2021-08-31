@@ -1,4 +1,3 @@
-import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ToastrModule } from 'ngx-toastr';
 
 import { CommonModule } from '@angular/common';
@@ -8,27 +7,31 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { BlockDetailComponent, NodeDetailComponent } from './components';
+import { BlockDetailComponent, NodeDetailComponent, NodeStatusComponent } from './components';
 import { BlockListComponent, NodeListComponent, ShellComponent } from './containers';
-import { NodeStatusComponent } from './components/node-status/node-status.component';
+
+const TOASTR_CONFIG = {
+  timeOut: 2000,
+  positionClass: 'toast-bottom-right',
+  preventDuplicates: true
+};
+
+const COMPONENTS = [
+  NodeListComponent,
+  NodeDetailComponent,
+  BlockListComponent,
+  BlockDetailComponent,
+  NodeStatusComponent
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ShellComponent,
-    NodeListComponent,
-    NodeDetailComponent,
-    BlockListComponent,
-    BlockDetailComponent,
-    NodeStatusComponent
-  ],
+  declarations: [AppComponent, ShellComponent, ...COMPONENTS],
   imports: [
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AccordionModule.forRoot(),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(TOASTR_CONFIG)
   ],
   providers: [],
   bootstrap: [AppComponent]
