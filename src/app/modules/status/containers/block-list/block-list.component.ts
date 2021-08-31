@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { Block } from 'src/app/models';
+import { Block } from 'src/app/modules/status/models';
 
 import { Component, Input, OnInit } from '@angular/core';
 

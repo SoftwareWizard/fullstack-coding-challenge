@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-
+import { SharedModule } from '../shared/shared.module';
+import { ShellComponent } from './containers/shell/shell.component';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [ShellComponent],
+  imports: [SharedModule],
+  exports: [ShellComponent]
 })
-export class CoreModule { }
+export class CoreModule {}
