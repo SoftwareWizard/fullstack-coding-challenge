@@ -3,12 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NodeListComponent } from './containers';
 
-const routes: Routes = [
-  {path: '', component: NodeListComponent}
-];
+const routes: Routes = [{ path: '', component: NodeListComponent }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class StatusRoutingModule { }
+export class StatusRoutingModule {}
