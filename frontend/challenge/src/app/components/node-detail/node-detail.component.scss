@@ -22,16 +22,17 @@ $border-color: rgb(221, 221, 221);
       color: grey;
     }
 
-    .status-container {
-      width: 100px;
-    }
-
     i {
       color: black;
       cursor: pointer;
 
       &.is-expanded {
         transform: rotate(+180deg);
+      }
+
+      &.is-disabled {
+        color: lightgray;
+        cursor: not-allowed;
       }
     }
 

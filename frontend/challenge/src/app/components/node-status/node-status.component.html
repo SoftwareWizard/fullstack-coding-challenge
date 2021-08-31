@@ -6,8 +6,8 @@
 </div>
 
 <ng-template #loaded>
-  <div>
-    <div class="status-circle" [ngClass]="{ success: isOnline, failure: !isOnline }"></div>
+  <div class="d-inline-flex align-items-center status-container">
+    <div class="status-circle" [ngClass]="{ 'status-circle-success': isOnline, 'status-circle-failure': !isOnline }"></div>
     <div class="status-text p-2">{{ statusText.get(isOnline) }}</div>
   </div>
 </ng-template>

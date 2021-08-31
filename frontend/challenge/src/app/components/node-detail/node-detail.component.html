@@ -5,12 +5,14 @@
         <div class="name">{{ node.name }}</div>
         <div class="url">{{ node.url }}</div>
       </div>
-      <div class="d-inline-flex align-items-center status-container">
+      <div class="d-flex align-items-center">
         <app-node-status [isOnline]="node.online" [isLoading]="node.loading"></app-node-status>
       </div>
     </div>
     <div>
-      <button class="expand-button" (click)="onToggle()"><i class="fa fa-chevron-down" [class.is-expanded]="isExpanded"></i></button>
+      <button class="expand-button" (click)="onToggle()" [disabled]="!node.online">
+        <i class="fa fa-chevron-down" [class.is-expanded]="isExpanded" [class.is-disabled]="!node.online"></i>
+      </button>
     </div>
   </div>
   <div class="content" [class.is-expanded]="isExpanded">

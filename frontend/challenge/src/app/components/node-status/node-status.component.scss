@@ -27,6 +27,10 @@
   }
 }
 
+.status-container {
+  width: 100px;
+}
+
 .status-text {
   text-transform: uppercase;
 }
@@ -36,14 +40,14 @@
   width: 10px;
   border-radius: 50%;
   border: 1px solid black;
+}
 
-  .success {
-    background-color: $success-color;
-  }
+.status-circle-success {
+  background-color: $success-color;
+}
 
-  .failure {
-    background-color: $danger-color;
-  }
+.status-circle-failure {
+  background-color: $danger-color;
 }
 
 .loading-ellipsis {

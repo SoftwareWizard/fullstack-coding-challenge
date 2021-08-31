@@ -25,13 +25,13 @@ export class NodesStore extends Store<Node[]> {
     const status = this.state.map(node => {
       return this.nodeService.getNodes(node.url).pipe(
         catchError(error => {
-          console.log(error);
+          console.error(error);
           return of(null);
         }),
         map(status => {
           return {
             ...node,
-            name: status?.node_name ?? '',
+            name: status?.node_name ?? node.name,
             online: !!status,
             loading: false
           };
