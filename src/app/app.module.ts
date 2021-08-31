@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { BlockDetailComponent, NodeDetailComponent, NodeStatusComponent } from './components';
 import { BlockListComponent, NodeListComponent, ShellComponent } from './containers';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { StatusModule } from './modules/status/status.module';
 
 const TOASTR_CONFIG = {
   timeOut: 2000,
@@ -31,7 +34,10 @@ const COMPONENTS = [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastrModule.forRoot(TOASTR_CONFIG)
+    ToastrModule.forRoot(TOASTR_CONFIG),
+    CoreModule,
+    SharedModule,
+    StatusModule
   ],
   providers: [],
   bootstrap: [AppComponent]
