@@ -1,5 +1,5 @@
 import { of } from 'rxjs';
-import { catchError, exhaustMap, map, mergeMap, withLatestFrom } from 'rxjs/operators';
+import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { getActions } from '@ngrx-ducks/core';
@@ -30,7 +30,7 @@ export class StatusEffects {
   loadNodeStatus$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(statusActions.loadNodeStatus),
-      exhaustMap(action =>
+      mergeMap(action =>
         this.nodeService.getStatus(action.payload.url).pipe(
           map(status =>
             statusActions.loadNodeStatusSuccess({ status, nodeId: action.payload.nodeId })

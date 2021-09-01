@@ -16,7 +16,7 @@ export class StatusFacade {
 
   loadNodeStatus = createDuck(
     '[Effect] Load Node Status',
-    (state: StatusState, payload: { nodeId: number, url: string }) =>
+    (state: StatusState, payload: { nodeId: number; url: string }) =>
       produce(state, draft => {
         const index = payload.nodeId - 1;
         draft.nodes[index].isLoading = true;
