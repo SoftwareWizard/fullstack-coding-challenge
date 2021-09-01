@@ -15,13 +15,8 @@ export class StatusFacade {
 
   loadNodeStatus = createDuck(
     '[Effect] Load Node Status',
-    (state: StatusState, payload: number) => {
-      const node = state.nodes.find(item => item.id == payload);
-
-      if (node) {
-        node.isLoading = true;
-      }
-
+    (state: StatusState, payload: { nodeId: number }) => {
+      state.nodes[payload.nodeId - 1].isLoading = true;
       return { ...state };
     }
   );
@@ -29,13 +24,12 @@ export class StatusFacade {
   loadNodeStatusSuccess = createDuck(
     '[Effect] Load Node Success',
     (state: StatusState, payload: { status: Status; nodeId: number }) => {
-      const node = state.nodes.find(item => item.id == payload.nodeId);
+      state.nodes[payload.nodeId - 1].isLoading = false;
+      state.nodes[payload.nodeId - 1].name = payload.status?.node_name
+        ? payload.status.node_name
+        : state.nodes[payload.nodeId - 1].name;
 
-      if (node) {
-        node.isLoading = false;
-        node.name = payload.status?.node_name ? payload.status.node_name : node.name;
-        node.isOnline = !!payload.status;
-      }
+      state.nodes[payload.nodeId - 1].isOnline = !!payload.status;
 
       return { ...state };
     }
@@ -44,13 +38,9 @@ export class StatusFacade {
   loadNodeStatusFailure = createDuck(
     '[Effect] Load Node Failure',
     (state: StatusState, payload: { nodeId: number }) => {
-      const node = state.nodes.find(item => item.id == payload.nodeId);
-
-      if (node) {
-        node.isLoading = false;
-        node.isOnline = false;
-        node.isExpanded = false;
-      }
+      state.nodes[payload.nodeId - 1].isLoading = false;
+      state.nodes[payload.nodeId - 1].isOnline = false;
+      state.nodes[payload.nodeId - 1].isExpanded = false;
 
       return { ...state };
     }
@@ -58,12 +48,8 @@ export class StatusFacade {
 
   toggleNode = createDuck(
     '[Node List Component] Toggle Block Information',
-    (state: StatusState, payload: number) => {
-      const node = state.nodes.find(item => item.id == payload);
-
-      if (node) {
-        node.isExpanded = !node.isExpanded;
-      }
+    (state: StatusState, payload: { nodeId: number }) => {
+      state.nodes[payload.nodeId - 1].isExpanded = !state.nodes[payload.nodeId - 1].isExpanded;
 
       return { ...state };
     }
