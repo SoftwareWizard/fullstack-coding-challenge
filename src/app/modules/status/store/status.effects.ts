@@ -1,19 +1,45 @@
+import { of } from 'rxjs';
+import { catchError, exhaustMap, map, mergeMap, withLatestFrom } from 'rxjs/operators';
+
 import { Injectable } from '@angular/core';
 import { getActions } from '@ngrx-ducks/core';
-import { Actions } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 
+import { NodeService } from '../services/node.service';
 import { StatusFacade } from './status.facade';
 
 const statusActions = getActions(StatusFacade);
 @Injectable()
 export class StatusEffects {
-  constructor(private actions$: Actions) {}
+  constructor(
+    private actions$: Actions,
+    private statusFacade: StatusFacade,
+    private nodeService: NodeService
+  ) {}
 
-  // loadStatuss$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(statusActions.increment),
-  //     /** An EMPTY observable only emits completion. Replace with your own observable API request */
-  //     concatMap(() => EMPTY as Observable<{ type: string }>)
-  //   );
-  // });
+  loadNodes$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(statusActions.loadNodes),
+      withLatestFrom(this.statusFacade.select.nodes),
+      mergeMap(([action, nodes]) =>
+        nodes.map(node => statusActions.loadNodeStatus({ nodeId: node.id, url: node.url }))
+      )
+    );
+  });
+
+  loadNodeStatus$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(statusActions.loadNodeStatus),
+      exhaustMap(action =>
+        this.nodeService.getStatus(action.payload.url).pipe(
+          map(status =>
+            statusActions.loadNodeStatusSuccess({ status, nodeId: action.payload.nodeId })
+          ),
+          catchError(error =>
+            of(statusActions.loadNodeStatusFailure({ nodeId: action.payload.nodeId }))
+          )
+        )
+      )
+    );
+  });
 }

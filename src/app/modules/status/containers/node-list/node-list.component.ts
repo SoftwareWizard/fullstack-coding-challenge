@@ -15,8 +15,12 @@ export class NodeListComponent implements OnInit {
 
   constructor(private statusFacade: StatusFacade) {}
 
-  ngOnInit(): void {
-    // TODO: dispatch load nodes action
+  async ngOnInit(): Promise<void> {
     this.nodes$ = this.statusFacade.select.nodes;
+    this.statusFacade.loadNodes.dispatch();
+  }
+
+  public onToggleExpand(nodeId: number) {
+    this.statusFacade.toggleNode.dispatch({ nodeId });
   }
 }

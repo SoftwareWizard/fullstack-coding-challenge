@@ -10,7 +10,7 @@
       </div>
     </div>
     <div>
-      <button class="expand-button" (click)="onToggle(node.isExpanded)" [disabled]="!node.isOnline">
+      <button class="expand-button" (click)="onToggle()" [disabled]="!node.isOnline">
         <i class="fa fa-chevron-down" [class.is-expanded]="node.isExpanded" [class.is-disabled]="!node.isOnline"></i>
       </button>
     </div>

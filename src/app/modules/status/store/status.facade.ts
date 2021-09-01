@@ -12,11 +12,11 @@ import { initialStatusState, statusFeatureKey, StatusState } from './status.stat
 export class StatusFacade {
   select = bindSelectors(selectors);
 
-  loadNodes = createDuck('[NodeList] Load Node Status');
+  loadNodes = createDuck('[NodeList] Load Nodes');
 
   loadNodeStatus = createDuck(
     '[Effect] Load Node Status',
-    (state: StatusState, payload: { nodeId: number }) =>
+    (state: StatusState, payload: { nodeId: number, url: string }) =>
       produce(state, draft => {
         const index = payload.nodeId - 1;
         draft.nodes[index].isLoading = true;

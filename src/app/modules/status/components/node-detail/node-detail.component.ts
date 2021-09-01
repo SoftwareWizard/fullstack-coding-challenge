@@ -9,11 +9,11 @@ import { Node } from '../../models';
 })
 export class NodeDetailComponent {
   @Input() node: Node = {} as Node;
-  @Output() toggleExpand = new EventEmitter<boolean>();
+  @Output() toggleExpand = new EventEmitter<number>();
 
   constructor() {}
 
-  public onToggle(isExpanded: boolean): void {
-    this.toggleExpand.emit(isExpanded);
+  public onToggle(): void {
+    this.toggleExpand.emit(this.node.id);
   }
 }
