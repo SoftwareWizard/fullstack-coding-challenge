@@ -1,3 +1,4 @@
+import produce from 'immer';
 import { environment } from 'src/environments/environment';
 
 import { bindSelectors, createDuck, getReducer, StoreFacade } from '@ngrx-ducks/core';
@@ -15,44 +16,45 @@ export class StatusFacade {
 
   loadNodeStatus = createDuck(
     '[Effect] Load Node Status',
-    (state: StatusState, payload: { nodeId: number }) => {
-      state.nodes[payload.nodeId - 1].isLoading = true;
-      return { ...state };
-    }
+    (state: StatusState, payload: { nodeId: number }) =>
+      produce(state, draft => {
+        const index = payload.nodeId - 1;
+        draft.nodes[index].isLoading = true;
+      })
   );
 
   loadNodeStatusSuccess = createDuck(
     '[Effect] Load Node Success',
-    (state: StatusState, payload: { status: Status; nodeId: number }) => {
-      state.nodes[payload.nodeId - 1].isLoading = false;
-      state.nodes[payload.nodeId - 1].name = payload.status?.node_name
-        ? payload.status.node_name
-        : state.nodes[payload.nodeId - 1].name;
+    (state: StatusState, payload: { status: Status; nodeId: number }) =>
+      produce(state, draft => {
+        const index = payload.nodeId - 1;
+        draft.nodes[index].isLoading = false;
+        draft.nodes[index].name = payload.status?.node_name
+          ? payload.status.node_name
+          : state.nodes[index].name;
 
-      state.nodes[payload.nodeId - 1].isOnline = !!payload.status;
-
-      return { ...state };
-    }
+        draft.nodes[index].isOnline = !!payload.status;
+      })
   );
 
   loadNodeStatusFailure = createDuck(
     '[Effect] Load Node Failure',
-    (state: StatusState, payload: { nodeId: number }) => {
-      state.nodes[payload.nodeId - 1].isLoading = false;
-      state.nodes[payload.nodeId - 1].isOnline = false;
-      state.nodes[payload.nodeId - 1].isExpanded = false;
-
-      return { ...state };
-    }
+    (state: StatusState, payload: { nodeId: number }) =>
+      produce(state, draft => {
+        const index = payload.nodeId - 1;
+        draft.nodes[index].isLoading = false;
+        draft.nodes[index].isOnline = false;
+        draft.nodes[index].isExpanded = false;
+      })
   );
 
   toggleNode = createDuck(
     '[Node List Component] Toggle Block Information',
-    (state: StatusState, payload: { nodeId: number }) => {
-      state.nodes[payload.nodeId - 1].isExpanded = !state.nodes[payload.nodeId - 1].isExpanded;
-
-      return { ...state };
-    }
+    (state: StatusState, payload: { nodeId: number }) =>
+      produce(state, draft => {
+        const index = payload.nodeId - 1;
+        draft.nodes[index].isExpanded = !state.nodes[index].isExpanded;
+      })
   );
 }
 
