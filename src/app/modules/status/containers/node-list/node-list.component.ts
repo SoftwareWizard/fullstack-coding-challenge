@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import { Node } from '../../models';
-import { NodesStore } from '../../store/nodes.store';
+import { StatusFacade } from '../../store/status.facade';
 
 @Component({
   selector: 'app-node-list',
@@ -13,10 +13,10 @@ import { NodesStore } from '../../store/nodes.store';
 export class NodeListComponent implements OnInit {
   public nodes$: Observable<Node[]> = new Observable<Node[]>();
 
-  constructor(private nodeStore: NodesStore) {}
+  constructor(private statusFacade: StatusFacade) {}
 
   ngOnInit(): void {
-    this.nodeStore.getStatus();
-    this.nodes$ = this.nodeStore.state$;
+    // TODO: dispatch load nodes action
+    this.nodes$ = this.statusFacade.select.nodes;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Node } from '../../models';
 
@@ -9,11 +9,11 @@ import { Node } from '../../models';
 })
 export class NodeDetailComponent {
   @Input() node: Node = {} as Node;
-  @Input() isExpanded: boolean = false;
+  @Output() toggleExpand = new EventEmitter<boolean>();
 
   constructor() {}
 
-  public onToggle(): void {
-    this.isExpanded = !this.isExpanded;
+  public onToggle(isExpanded: boolean): void {
+    this.toggleExpand.emit(isExpanded);
   }
 }

@@ -3,6 +3,6 @@ export interface Node {
   name: string;
   status?: string;
   isLoading: boolean;
-  isOnline: boolean;
+  isOnline?: boolean;
   isExpanded: boolean;
 }
