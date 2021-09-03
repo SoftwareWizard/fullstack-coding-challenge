@@ -588,7 +588,7 @@
         },
         {
             "name": "BlockDetailComponent",
-            "id": "component-BlockDetailComponent-85ceaa80d078b4cb56179445a497f7be",
+            "id": "component-BlockDetailComponent-1e2d60c076edae3d2eebf6dfa3eb5fd8",
             "file": "src/app/modules/status/components/block-detail/block-detail.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -610,7 +610,9 @@
                     "defaultValue": "{} as Block",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "rawdescription": "The Block to render",
+                    "description": "<p>The Block to render</p>\n",
+                    "line": 16,
                     "type": "Block"
                 }
             ],
@@ -624,7 +626,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\r\n\r\nimport { Block } from '../../models';\r\n\r\n@Component({\r\n  selector: 'app-block-detail',\r\n  templateUrl: './block-detail.component.html',\r\n  styleUrls: ['./block-detail.component.scss']\r\n})\r\nexport class BlockDetailComponent {\r\n  @Input() block: Block = {} as Block;\r\n}\r\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\n\r\nimport { Block } from '../../models';\r\n\r\n@Component({\r\n  selector: 'app-block-detail',\r\n  templateUrl: './block-detail.component.html',\r\n  styleUrls: ['./block-detail.component.scss']\r\n})\r\nexport class BlockDetailComponent {\r\n\r\n  /**\r\n   * The Block to render\r\n   */\r\n  @Input() block: Block = {} as Block;\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -758,7 +760,7 @@
         },
         {
             "name": "NodeDetailComponent",
-            "id": "component-NodeDetailComponent-0d7f4f72799010a377179c2685524f8a",
+            "id": "component-NodeDetailComponent-89707332c12a94fdfe87d65c0e215fc6",
             "file": "src/app/modules/status/components/node-detail/node-detail.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -817,7 +819,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\n\r\nimport { Node } from '../../models';\r\n\r\n@Component({\r\n  selector: 'app-node-detail',\r\n  templateUrl: './node-detail.component.html',\r\n  styleUrls: ['./node-detail.component.scss']\r\n})\r\nexport class NodeDetailComponent {\r\n  @Input() node: Node = {} as Node;\r\n  @Output() toggleExpand = new EventEmitter<number>();\r\n\r\n  constructor() {}\r\n\r\n  public onToggle(): void {\r\n    this.toggleExpand.emit(this.node.id);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\n\r\nimport { Node } from '../../models';\r\n\r\n@Component({\r\n  selector: 'app-node-detail',\r\n  templateUrl: './node-detail.component.html',\r\n  styleUrls: ['./node-detail.component.scss']\r\n})\r\nexport class NodeDetailComponent {\r\n  @Input() node: Node = {} as Node;\r\n  @Output() toggleExpand = new EventEmitter<number>();\r\n\r\n  constructor() {}\r\n\r\n  public onToggle(): void {\r\n    this.toggleExpand.emit(this.node.id);\r\n  }\r\n\r\n  public get isDisabled(): boolean {\r\n    return !this.node.isOnline && !this.node.isExpanded;\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -834,7 +836,18 @@
                 "args": [],
                 "line": 12
             },
-            "templateData": "<div class=\"node-detail-container\">\r\n  <div class=\"header\">\r\n    <div class=\"d-flex justify-content-between\">\r\n      <div>\r\n        <div class=\"name\">{{ node.name }}</div>\r\n        <div class=\"url\">{{ node.url }}</div>\r\n      </div>\r\n      <div class=\"d-flex align-items-center\">\r\n        <app-node-status [isOnline]=\"node.isOnline\" [isLoading]=\"node.isLoading\"></app-node-status>\r\n      </div>\r\n    </div>\r\n    <div>\r\n      <button class=\"expand-button\" (click)=\"onToggle()\" [disabled]=\"!node.isOnline\">\r\n        <i class=\"fa fa-chevron-down\" [class.is-expanded]=\"node.isExpanded\" [class.is-disabled]=\"!node.isOnline\"></i>\r\n      </button>\r\n    </div>\r\n  </div>\r\n  <div class=\"content\" [class.is-expanded]=\"node.isExpanded\">\r\n    <app-block-list *ngIf=\"node.isExpanded\" [url]=\"node.url\"></app-block-list>\r\n  </div>\r\n</div>\r\n"
+            "accessors": {
+                "isDisabled": {
+                    "name": "isDisabled",
+                    "getSignature": {
+                        "name": "isDisabled",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 20
+                    }
+                }
+            },
+            "templateData": "<div class=\"node-detail-container\">\r\n  <div class=\"header\">\r\n    <div class=\"d-flex justify-content-between\">\r\n      <div>\r\n        <div class=\"name\">{{ node.name }}</div>\r\n        <div class=\"url\">{{ node.url }}</div>\r\n      </div>\r\n      <div class=\"d-flex align-items-center\">\r\n        <app-node-status [isOnline]=\"node.isOnline\" [isLoading]=\"node.isLoading\"></app-node-status>\r\n      </div>\r\n    </div>\r\n    <div>\r\n      <button class=\"expand-button\" (click)=\"onToggle()\" [disabled]=\"isDisabled\">\r\n        <i class=\"fa fa-chevron-down\" [class.is-expanded]=\"node.isExpanded\" [class.is-disabled]=\"isDisabled\"></i>\r\n      </button>\r\n    </div>\r\n  </div>\r\n  <div class=\"content\" [class.is-expanded]=\"node.isExpanded\">\r\n    <app-block-list *ngIf=\"node.isExpanded\" [url]=\"node.url\"></app-block-list>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "NodeListComponent",
@@ -1413,14 +1426,24 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
-                "name": "environment",
+                "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
+                "file": "src/app/modules/status/components/block-detail/block-detail.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "defaultNode",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\r\n  production: true\r\n}"
+                "defaultValue": "{\r\n  id: 1,\r\n  name: 'Test-name',\r\n  url: 'Test-url',\r\n  isLoading: false,\r\n  isOnline: false,\r\n  isExpanded: false\r\n}"
             },
             {
                 "name": "environment",
@@ -1431,6 +1454,16 @@
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  production: false,\r\n  serverUrls: [\r\n    'https://thawing-springs-53971.herokuapp.com',\r\n    'https://secret-lowlands-62331.herokuapp.com',\r\n    'https://calm-anchorage-82141.herokuapp.com',\r\n    'http://localhost:3002'\r\n  ]\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: true\r\n}"
             },
             {
                 "name": "featureKey",
@@ -1466,7 +1499,17 @@
                 "name": "Loading",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Loading",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1506,7 +1549,27 @@
                 "name": "Offline",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Offline",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "OfflineAndExpanded",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1516,13 +1579,31 @@
                 "name": "Online",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "Template.bind({})",
-                "rawdescription": "The online state, when nodes are online.",
-                "description": "<p>The online state, when nodes are online.</p>\n"
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Online",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "OnlineAndExpanded",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "reducers",
@@ -1587,10 +1668,30 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                "file": "src/app/modules/status/components/block-detail/block-detail.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<BlockDetailComponent>",
+                "defaultValue": "args => ({\r\n  props: {\r\n    ...args,\r\n  }\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<NodeStatusComponent>",
+                "defaultValue": "args => ({\r\n  props: {\r\n    ...args\r\n  }\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NodeDetailComponent>",
                 "defaultValue": "args => ({\r\n  props: {\r\n    ...args\r\n  }\r\n})"
             },
             {
@@ -1607,7 +1708,7 @@
                 "name": "Unknown",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -1687,16 +1788,98 @@
                     "type": "literal type"
                 }
             ],
-            "src/environments/environment.prod.ts": [
+            "src/app/modules/status/components/block-detail/block-detail.stories.ts": [
                 {
-                    "name": "environment",
+                    "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
+                    "file": "src/app/modules/status/components/block-detail/block-detail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/modules/status/components/block-detail/block-detail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<BlockDetailComponent>",
+                    "defaultValue": "args => ({\r\n  props: {\r\n    ...args,\r\n  }\r\n})"
+                }
+            ],
+            "src/app/modules/status/components/node-detail/node-detail.stories.ts": [
+                {
+                    "name": "defaultNode",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\r\n  production: true\r\n}"
+                    "defaultValue": "{\r\n  id: 1,\r\n  name: 'Test-name',\r\n  url: 'Test-url',\r\n  isLoading: false,\r\n  isOnline: false,\r\n  isExpanded: false\r\n}"
+                },
+                {
+                    "name": "Loading",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Offline",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "OfflineAndExpanded",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Online",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "OnlineAndExpanded",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<NodeDetailComponent>",
+                    "defaultValue": "args => ({\r\n  props: {\r\n    ...args\r\n  }\r\n})"
                 }
             ],
             "src/environments/environment.ts": [
@@ -1709,6 +1892,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  production: false,\r\n  serverUrls: [\r\n    'https://thawing-springs-53971.herokuapp.com',\r\n    'https://secret-lowlands-62331.herokuapp.com',\r\n    'https://calm-anchorage-82141.herokuapp.com',\r\n    'http://localhost:3002'\r\n  ]\r\n}"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: true\r\n}"
                 }
             ],
             "src/app/modules/status/store/status.facade.ts": [
@@ -1797,12 +1992,12 @@
                     "defaultValue": "createFeatureSelector<StatusState>(statusFeatureKey)"
                 }
             ],
-            "src/app/modules/status/components/node-status/node-status._stories.ts": [
+            "src/app/modules/status/components/node-status/node-status.stories.ts": [
                 {
                     "name": "Loading",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                    "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1812,7 +2007,7 @@
                     "name": "Offline",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                    "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1822,19 +2017,17 @@
                     "name": "Online",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                    "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "Template.bind({})",
-                    "rawdescription": "The online state, when nodes are online.",
-                    "description": "<p>The online state, when nodes are online.</p>\n"
+                    "defaultValue": "Template.bind({})"
                 },
                 {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                    "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<NodeStatusComponent>",
@@ -1844,7 +2037,7 @@
                     "name": "Unknown",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                    "file": "src/app/modules/status/components/node-status/node-status.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -1956,7 +2149,7 @@
         ]
     },
     "coverage": {
-        "count": 3,
+        "count": 1,
         "status": "low",
         "files": [
             {
@@ -2021,8 +2214,28 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "BlockDetailComponent",
+                "coveragePercent": 50,
+                "coverageCount": "1/2",
+                "status": "medium"
+            },
+            {
+                "filePath": "src/app/modules/status/components/block-detail/block-detail.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
                 "coveragePercent": 0,
-                "coverageCount": "0/2",
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/status/components/block-detail/block-detail.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -2035,7 +2248,17 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                "filePath": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "defaultNode",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -2045,7 +2268,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                "filePath": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -2055,31 +2278,41 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                "filePath": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Online",
-                "coveragePercent": 100,
-                "coverageCount": "1/1",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/app/modules/status/components/node-status/node-status._stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
+                "name": "OfflineAndExpanded",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/app/modules/status/components/node-status/node-status._stories.ts",
+                "filePath": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Unknown",
+                "name": "Online",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "OnlineAndExpanded",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/status/components/node-detail/node-detail.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -2092,6 +2325,56 @@
                 "coveragePercent": 50,
                 "coverageCount": "2/4",
                 "status": "medium"
+            },
+            {
+                "filePath": "src/app/modules/status/components/node-status/node-status.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Loading",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/status/components/node-status/node-status.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Offline",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/status/components/node-status/node-status.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Online",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/status/components/node-status/node-status.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/modules/status/components/node-status/node-status.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Unknown",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
             },
             {
                 "filePath": "src/app/modules/status/containers/block-list/block-list.component.ts",

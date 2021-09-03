@@ -16,4 +16,8 @@ export class NodeDetailComponent {
   public onToggle(): void {
     this.toggleExpand.emit(this.node.id);
   }
+
+  public get isDisabled(): boolean {
+    return !this.node.isOnline && !this.node.isExpanded;
+  }
 }
