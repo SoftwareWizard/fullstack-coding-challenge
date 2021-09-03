@@ -40,7 +40,7 @@ References:
 - Run: `npx sb init`</code>
 - Run: `npm run storybook`
 - Open Storybook Website on [http://localhost:6006](http://localhost:6006)
-- Remove **stories** folder
+- Remove **app/stories** folder
 
 ### VS Code Extensions
 - Story Explorer (disable Live-server in settings, use live server)
