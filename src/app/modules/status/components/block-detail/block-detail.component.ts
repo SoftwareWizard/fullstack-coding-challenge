@@ -9,5 +9,9 @@ import { Block } from '../../models';
   styleUrls: ['./block-detail.component.scss']
 })
 export class BlockDetailComponent {
+
+  /**
+   * The Block to render
+   */
   @Input() block: Block = {} as Block;
 }
