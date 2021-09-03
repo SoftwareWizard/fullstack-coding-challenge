@@ -1401,21 +1401,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  production: false,\r\n  serverUrls: [\r\n    'https://thawing-springs-53971.herokuapp.com',\r\n    'https://secret-lowlands-62331.herokuapp.com',\r\n    'https://calm-anchorage-82141.herokuapp.com',\r\n    'http://localhost:3002'\r\n  ]\r\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/environments/environment.prod.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  production: true\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: false,\r\n  serverUrls: [\r\n    'https://thawing-springs-53971.herokuapp.com',\r\n    'https://secret-lowlands-62331.herokuapp.com',\r\n    'https://calm-anchorage-82141.herokuapp.com',\r\n    'http://localhost:3002'\r\n  ]\r\n}"
             },
             {
                 "name": "featureKey",
@@ -1658,18 +1658,6 @@
                     "type": "literal type"
                 }
             ],
-            "src/environments/environment.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\r\n  production: false,\r\n  serverUrls: [\r\n    'https://thawing-springs-53971.herokuapp.com',\r\n    'https://secret-lowlands-62331.herokuapp.com',\r\n    'https://calm-anchorage-82141.herokuapp.com',\r\n    'http://localhost:3002'\r\n  ]\r\n}"
-                }
-            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -1680,6 +1668,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  production: true\r\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: false,\r\n  serverUrls: [\r\n    'https://thawing-springs-53971.herokuapp.com',\r\n    'https://secret-lowlands-62331.herokuapp.com',\r\n    'https://calm-anchorage-82141.herokuapp.com',\r\n    'http://localhost:3002'\r\n  ]\r\n}"
                 }
             ],
             "src/app/modules/status/store/status.facade.ts": [

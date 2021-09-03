@@ -1,5 +1,6 @@
 import { setCompodocJson } from "@storybook/addon-docs/angular";
 import docJson from "../documentation.json";
+import { backgroundColors } from "./background-colors";
 setCompodocJson(docJson);
 
 export const parameters = {
@@ -11,4 +12,8 @@ export const parameters = {
     },
   },
   docs: { inlineStories: true },
-}
+  backgrounds: {
+    default: "twitter",
+    values: backgroundColors
+  },
+};

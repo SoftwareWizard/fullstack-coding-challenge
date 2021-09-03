@@ -11,7 +11,6 @@ export default {
       imports: [CommonModule]
     })
   ],
-  excludeStories: /.*Data$/,
   title: 'Status/Node Status Component'
 } as Meta;
 
