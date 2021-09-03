@@ -20,12 +20,6 @@ const Template: Story<NodeStatusComponent> = args => ({
   }
 });
 
-export const Unknown = Template.bind({});
-Unknown.args = {
-  isLoading: false,
-  isOnline: undefined
-};
-
 export const Online = Template.bind({});
 Online.args = {
   isLoading: false,
@@ -36,6 +30,12 @@ export const Offline = Template.bind({});
 Offline.args = {
   isLoading: false,
   isOnline: false
+};
+
+export const Unknown = Template.bind({});
+Unknown.args = {
+  isLoading: false,
+  isOnline: undefined
 };
 
 export const Loading = Template.bind({});

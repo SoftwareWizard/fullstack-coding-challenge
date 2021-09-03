@@ -4,6 +4,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-backgrounds",
+    "@reapit/storybook-addon-html",
     "storybook-addon-paddings",
     "storybook-color-picker",
   ],
