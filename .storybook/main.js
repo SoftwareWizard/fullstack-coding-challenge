@@ -7,6 +7,7 @@ module.exports = {
     "@reapit/storybook-addon-html",
     "storybook-addon-paddings",
     "storybook-color-picker",
+    "@storybook/addon-docs"
   ],
   core: {
     builder: "webpack5",
