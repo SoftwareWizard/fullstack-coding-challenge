@@ -1,5 +1,9 @@
 export const backgroundColors = [
   {
+    name: "twitter",
+    value: "#ffffff",
+  },
+  {
     name: "black",
     value: "#000000",
   },
