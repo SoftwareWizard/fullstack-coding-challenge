@@ -3,7 +3,7 @@ Fullstack Labs Coding Challenge
 
 Date: 30.08.2021
 
-![image info](./Screenshot.png)
+![image info](./documentation/Screenshot.png)
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -21,7 +21,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
   - BlockDetail
   - NodeStatus
 
-![image info](./Screenshot-Folders.png)
+![image info](./documentation/Screenshot-Folders.png)
 
 ## Packages
 - font-awesome
@@ -29,6 +29,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 - ngx-toastr
 
 # Storybook
+
+![image info](./documentation/Screenshot-storybook.png)
 
 References:
 - [StoryBook HomePage](https://storybook.js.org/)

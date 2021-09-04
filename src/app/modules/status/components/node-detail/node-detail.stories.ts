@@ -29,7 +29,7 @@ export default {
       ]
     })
   ],
-  title: 'Status/Node Detail Component'
+  title: 'Status/Nodes/Node Detail Component'
 } as Meta;
 
 const Template: Story<NodeDetailComponent> = args => ({
@@ -86,5 +86,17 @@ Loading.args = {
   node: {
     ...defaultNode,
     isLoading: true
+  }
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  node: {
+    ...defaultNode,
+    isLoading: false,
+    id: 1,
+    url: 'invalid-url',
+    isOnline: undefined,
+    isExpanded: true
   }
 };

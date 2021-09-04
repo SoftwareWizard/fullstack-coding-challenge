@@ -11,7 +11,7 @@ export default {
       imports: [CommonModule]
     })
   ],
-  title: 'Status/Node Status Component',
+  title: 'Status/Nodes/Node Status Component',
 } as Meta;
 
 const Template: Story<NodeStatusComponent> = args => ({

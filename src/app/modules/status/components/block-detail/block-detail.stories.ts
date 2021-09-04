@@ -11,7 +11,7 @@ export default {
       imports: [CommonModule]
     })
   ],
-  title: 'Status/Block Detail Component'
+  title: 'Status/Blocks/Block Detail Component'
 } as Meta;
 
 const Template: Story<BlockDetailComponent> = args => ({
