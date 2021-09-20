@@ -9,7 +9,10 @@
     "test": "ng test",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "npm run docs:json && build-storybook"
+    "build-storybook": "npm run docs:json && build-storybook",
+    "e2e": "ng e2e",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +45,7 @@
     "@angular/elements": "^12.2.4",
     "@babel/core": "^7.15.4",
     "@compodoc/compodoc": "^1.1.14",
+    "@cypress/schematic": "^1.5.1",
     "@kharioki/storybook-outline-addon": "^0.1.4",
     "@ngneat/spectator": "^8.0.3",
     "@ngrx-ducks/schematics": "^12.0.0",
@@ -72,6 +76,7 @@
     "ng-mocks": "^12.4.0",
     "storybook-addon-paddings": "^4.2.1",
     "storybook-color-picker": "^2.1.4",
-    "typescript": "~4.3.2"
+    "typescript": "~4.3.2",
+    "cypress": "8.4.1"
   }
 }
