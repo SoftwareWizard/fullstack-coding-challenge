@@ -3,6 +3,8 @@
   "include": ["**/*.ts"],
   "compilerOptions": {
     "sourceMap": false,
-    "types": ["cypress", "cypress-selectors"]
+    "types": ["cypress", "cypress-selectors"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
 }

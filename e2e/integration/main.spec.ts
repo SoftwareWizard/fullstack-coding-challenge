@@ -1,3 +1,4 @@
+import TEST_BLOCK from '../fixtures/block.json';
 import { MainPageObject } from '../page-objects/main.po';
 
 const TEST_NODE_URLS = [
@@ -7,35 +8,22 @@ const TEST_NODE_URLS = [
   'http://localhost:3002'
 ];
 
+const TEST_NODE_NAMES = ['Thawing Springs', 'Secret Lowlands', 'Calm Anchorage', 'Node 4'];
+
 const ITERATOR_NAME = ['first', 'second', 'third', 'fourth'];
 
 describe('Main Page', () => {
   beforeEach(() => {
-    for (let i = 0; i < TEST_NODE_URLS.length; i++) {
-      cy.intercept({
-        method: 'GET',
-        url: `${TEST_NODE_URLS[i]}/api/v1/status`
-      }).as(`${ITERATOR_NAME[i]}Node`);
+    for (let i = 0; i < TEST_NODE_URLS.length - 1; i++) {
+      cy.intercept(`${TEST_NODE_URLS[i]}/api/v1/status`, { node_name: `${TEST_NODE_NAMES[i]}` }).as(`${ITERATOR_NAME[i]}Node`);
     }
 
-    cy.intercept({
-      method: 'GET',
-      url: `${TEST_NODE_URLS[0]}api/v1/blocks`
-    }).as(`${ITERATOR_NAME[0]}Block`);
-  });
+    cy.intercept(`${TEST_NODE_URLS[3]}/api/v1/status`).as(`${ITERATOR_NAME[3]}Node`);
 
-  it.skip('should display Nodes', () => {
-    cy.visit('/');
-    MainPageObject.NodeListTitle.contains('Nodes');
-
-    for (let index = 0; index < 3; index++) {
-      MainPageObject.NodeDetailNames.eq(index).should('have.text', `Node ${index}`);
-    }
+    cy.intercept(`${TEST_NODE_URLS[0]}/api/v1/blocks`, { fixture: 'block.json' }).as(`${ITERATOR_NAME[0]}Block`);
   });
 
   it('should load status of Nodes', () => {
-    const TEST_NODE_NAMES = ['Thawing Springs', 'Secret Lowlands', 'Calm Anchorage', 'Node 4'];
-
     cy.visit('/');
 
     cy.wait(['@firstNode', '@secondNode', '@thirdNode', '@fourthNode']).then(_ => {
@@ -50,7 +38,7 @@ describe('Main Page', () => {
   });
 
   it('should open nodes with information', () => {
-    const TEST_BLOCK_DETAIL_DESCRIPTION = 'The Human Torch';
+    const TEST_BLOCK_DETAIL_DESCRIPTION = TEST_BLOCK.data[0].attributes.data;
 
     cy.visit('/');
 
