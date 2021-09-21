@@ -1,4 +1,4 @@
-<h2>Nodes <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="isSomeLoading$ | async"></i></h2>
+<h2 data-cy="node-list-title">Nodes <i class="fa fa-spinner fa-pulse fa-fw" *ngIf="isSomeLoading$ | async"></i></h2>
 <div class="node-list-container">
   <app-node-detail *ngFor="let node of nodes$ | async" [node]="node" (toggleExpand)="onToggleExpand($event)"></app-node-detail>
 </div>
