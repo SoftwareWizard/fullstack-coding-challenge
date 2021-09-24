@@ -3,10 +3,11 @@
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "types": [
-      "jest", // 1
       "node",
-      "ts-jest"
+      "jest", // 1
+      "jest-chain"
     ],
+    "module": "commonjs",
     "esModuleInterop": true, // 2
     "emitDecoratorMetadata": true // 3
   },
@@ -17,5 +18,5 @@
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
-  ]
+  ],
 }
