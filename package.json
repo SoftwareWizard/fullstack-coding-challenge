@@ -24,14 +24,12 @@
     "@angular/platform-browser": "~12.1.0",
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
-    "@babel/preset-env": "^7.15.6",
     "@briebug/jest-schematic": "^3.1.0",
     "@ngrx-ducks/core": "^12.4.2",
     "@ngrx/effects": "^12.4.0",
     "@ngrx/store": "^12.4.0",
     "@ngrx/store-devtools": "^12.4.0",
     "@storybook/addon-docs": "^6.3.7",
-    "babel-jest": "^27.2.1",
     "bootstrap": "^5.1.0",
     "font-awesome": "^4.7.0",
     "immer": "^9.0.6",
@@ -47,7 +45,6 @@
     "@angular/cli": "~12.1.4",
     "@angular/compiler-cli": "~12.1.0",
     "@angular/elements": "^12.2.4",
-    "@babel/core": "^7.15.5",
     "@compodoc/compodoc": "^1.1.14",
     "@cypress/schematic": "^1.5.1",
     "@kharioki/storybook-outline-addon": "^0.1.4",
@@ -67,18 +64,15 @@
     "@types/jest": "^27.0.2",
     "@types/node": "^12.11.1",
     "@webcomponents/custom-elements": "^1.5.0",
-    "babel-loader": "^8.2.2",
     "cypress-selectors": "^1.0.1",
     "jest": "^27.2.1",
     "jest-chain": "^1.1.5",
     "jest-preset-angular": "^10.0.0",
-    "ng-mocks": "^12.4.0",
+    "ng-mocks": "^12.5.0",
     "storybook-addon-paddings": "^4.2.1",
     "storybook-color-picker": "^2.1.4",
     "ts-node": "^10.2.1",
-    "typescript": "~4.3.2"
-  },
-  "optionalDependencies": {
+    "typescript": "~4.3.2",
     "cypress": "^8.4.1"
   }
 }

@@ -4,15 +4,15 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "node",
-      "jest", // 1
+      "jest",
       "jest-chain"
     ],
     "module": "commonjs",
-    "esModuleInterop": true, // 2
-    "emitDecoratorMetadata": true // 3
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true
   },
   "files": [
-    "src/test.ts",
+    "src/setupJest.ts",
     "src/polyfills.ts"
   ],
   "include": [

@@ -6,7 +6,7 @@ module.exports = {
   preset: 'jest-preset-angular',
   roots: ['<rootDir>/src/'],
   testMatch: ['**/+(*.)+(spec).+(ts)'],
-  setupFilesAfterEnv: ['<rootDir>/src/test.ts', 'jest-chain'],
+  setupFilesAfterEnv: ['<rootDir>/src/setupJest.ts', 'jest-chain'],
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/dist/',
@@ -19,7 +19,6 @@ module.exports = {
     },
   },
   collectCoverage: true,
-
   coverageReporters: ['html'],
   coverageDirectory: 'coverage/challenge',
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
