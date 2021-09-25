@@ -10,7 +10,7 @@ module.exports = {
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/dist/',
-    '<rootDir>/cypress/',
+    '<rootDir>/e2e/',
   ],
   globals: {
     'ts-jest': {
