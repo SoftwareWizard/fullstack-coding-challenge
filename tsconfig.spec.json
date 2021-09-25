@@ -5,7 +5,8 @@
     "types": [
       "node",
       "jest",
-      "jest-chain"
+      "jest-chain",
+      "@ngneat/spectator/jest"
     ],
     "module": "commonjs",
     "esModuleInterop": true,
