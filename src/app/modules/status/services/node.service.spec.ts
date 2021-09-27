@@ -1,6 +1,7 @@
 import { createHttpFactory, HttpMethod, SpectatorHttp } from '@ngneat/spectator/jest';
 
 import { Block } from '../models';
+import { BlockAttributes } from '../models/block-attributes';
 import { API_SEGMENT, NodeService } from './node.service';
 
 describe('NodeService', () => {
@@ -26,12 +27,23 @@ describe('NodeService', () => {
 
   it('should return blocks', async () => {
     // arrange
-    let testBlocks: Block[];
+    const testBlock: Block = {
+      id: 'testId',
+      type: 'block',
+      attributes: {} as BlockAttributes
+    };
+
+    const testBlockData = {
+      data: [testBlock]
+    };
 
     // act
-    await nodeService.getBlocks(TEST_URL);
+    const promise = nodeService.getBlocks(TEST_URL);
 
     // assert
-    spectator.expectOne(`${TEST_URL}/${API_SEGMENT}/blocks`, HttpMethod.GET).request
+    spectator.expectOne(`${TEST_URL}/${API_SEGMENT}/blocks`, HttpMethod.GET).flush(testBlockData);
+
+    const result = await promise;
+    expect(result).toEqual(testBlockData.data);
   });
 });
