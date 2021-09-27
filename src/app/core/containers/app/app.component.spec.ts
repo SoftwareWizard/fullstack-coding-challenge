@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
 import { AppComponent } from './app.component';
@@ -7,7 +8,8 @@ describe('AppComponent', () => {
   let spectator: Spectator<AppComponent>;
 
   const createComponent = createComponentFactory({
-    component: AppComponent
+    component: AppComponent,
+    schemas: [NO_ERRORS_SCHEMA]
   });
 
   beforeEach(() => {
@@ -17,6 +19,5 @@ describe('AppComponent', () => {
 
   it('should create the component', async () => {
     expect(component).toBeTruthy();
-    expect(spectator.query('h2')).toHaveText('Hurra');
   });
 });
