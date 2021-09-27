@@ -45,5 +45,6 @@ describe('NodeService', () => {
 
     const result = await promise;
     expect(result).toEqual(testBlockData.data);
+    expect(result).toMatchSnapshot();
   });
 });
