@@ -1,15 +1,13 @@
 import { createHttpFactory, HttpMethod, SpectatorHttp } from '@ngneat/spectator/jest';
 
-import { Block, Status } from '../models';
+import { Block } from '../models';
 import { API_SEGMENT, NodeService } from './node.service';
 
-describe('NodeService', function () {
+describe('NodeService', () => {
   let spectator: SpectatorHttp<NodeService>;
   let nodeService: NodeService;
 
-  let testStatus: Status;
-  let testBlocks: Block[];
-  let responseStatus: Status;
+  const TEST_URL = 'http://testurl.com';
 
   const createHttp = createHttpFactory(NodeService);
 
@@ -19,19 +17,21 @@ describe('NodeService', function () {
   });
 
   it('should return node', () => {
-    // arrange
-    const TEST_URL = 'http://testurl.com';
-    testStatus = {
-      node_name: 'TEST NODE NAME'
-    };
-
     // act
-    nodeService.getStatus(TEST_URL).subscribe((response: Status) => responseStatus = response);
+    nodeService.getStatus(TEST_URL).subscribe();
 
     // assert
-    spectator.expectOne(`${TEST_URL}/${API_SEGMENT}/status`, HttpMethod.GET).flush(testStatus);
-    expect(responseStatus.node_name).toBe(testStatus.node_name);
+    spectator.expectOne(`${TEST_URL}/${API_SEGMENT}/status`, HttpMethod.GET);
   });
 
-  it('should return blocks', () => {});
+  it('should return blocks', async () => {
+    // arrange
+    let testBlocks: Block[];
+
+    // act
+    await nodeService.getBlocks(TEST_URL);
+
+    // assert
+    spectator.expectOne(`${TEST_URL}/${API_SEGMENT}/blocks`, HttpMethod.GET).request
+  });
 });
