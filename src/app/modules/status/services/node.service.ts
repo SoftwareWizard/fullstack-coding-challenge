@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 
 import { Block, Status } from '../models';
 
-const API_SEGMENT = 'api/v1';
+export const API_SEGMENT = 'api/v1';
 
 interface Blocks {
   data: Block[];
