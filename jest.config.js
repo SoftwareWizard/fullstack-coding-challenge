@@ -20,7 +20,7 @@ module.exports = {
   },
   collectCoverage: true,
   coverageReporters: ["html", "lcov"],
-  coverageDirectory: "coverage/challenge",
+  coverageDirectory: "coverage",
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
     prefix: "<rootDir>/",
   }),

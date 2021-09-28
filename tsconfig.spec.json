@@ -6,7 +6,8 @@
       "node",
       "jest",
       "jest-chain",
-      "@ngneat/spectator/jest"
+      "@ngneat/spectator/jest",
+      "ng-mocks"
     ],
     "module": "commonjs",
     "esModuleInterop": true,
