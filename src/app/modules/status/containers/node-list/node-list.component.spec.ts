@@ -25,4 +25,24 @@ describe('NodeList Component', () => {
   it('should create the component', async () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display spinner when loading', async () => {
+    // isSomeLoading$ = true;
+    // nodes = []
+    // find loading spinner
+  });
+
+  it('should display nodes when loaded', async () => {
+    // isSomeLoading$ = false;
+    // nodes = [...]
+    // find app-node-details
+  });
+
+  it('should dispatch toggleNode when expand', async () => {
+    // isSomeLoading$ = false;
+    // nodes = [...]
+    // find app-node-details
+    // click expand
+    // expect dispatch event
+  });
 });

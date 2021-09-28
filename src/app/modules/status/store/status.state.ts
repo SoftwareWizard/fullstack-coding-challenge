@@ -1,5 +1,4 @@
-import { environment } from 'src/environments/environment';
-
+import { environment } from '../../../../environments/environment';
 import { Node } from '../models';
 
 export const statusFeatureKey = 'status';

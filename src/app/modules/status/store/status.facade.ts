@@ -1,5 +1,4 @@
 import produce from 'immer';
-import { environment } from 'src/environments/environment';
 
 import { bindSelectors, createDuck, getReducer, StoreFacade } from '@ngrx-ducks/core';
 import { MetaReducer } from '@ngrx/store';
@@ -59,5 +58,5 @@ export class StatusFacade {
 }
 
 export const featureKey = statusFeatureKey;
-export const metaReducers: MetaReducer<StatusState>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<StatusState>[] = [];
 export const statusReducer = getReducer(initialStatusState, StatusFacade);
