@@ -1,10 +1,10 @@
-import { MockComponent } from 'ng-mocks';
+import { MockComponent, ngMocks } from 'ng-mocks';
 import { of } from 'rxjs';
 
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
-import { getFacadeSpy } from '../../../../../../test/helper/facade-helper';
-import { IFacadeSpy } from '../../../../../../test/helper/facade-spy.type';
+import { getFacadeMock } from '../../../../../../test/helper/facade-helper';
+import { IFacadeMock } from '../../../../../../test/helper/facade-mock.type';
 import { NodeDetailComponent } from '../../components/node-detail/node-detail.component';
 import { StatusFacade } from '../../store/status.facade';
 import * as statusSelectors from '../../store/status.selectors';
@@ -15,8 +15,8 @@ const TEST_NODES = [] as Node[];
 describe('NodeList Component', () => {
   let spectator: Spectator<NodeListComponent>;
   let component: NodeListComponent;
-  let statusFacadeSpy: IFacadeSpy<StatusFacade>;
-  let nodeDetailComponentMock: NodeDetailComponent;
+  let statusFacadeMock: IFacadeMock<StatusFacade>;
+  let nodeDetailComponentMocks: NodeDetailComponent[];
 
   const createComponent = createComponentFactory({
     component: NodeListComponent,
@@ -27,49 +27,48 @@ describe('NodeList Component', () => {
   beforeEach(() => {
     spectator = createComponent();
     component = spectator.component;
-    // nodeDetailComponentMock = ngMocks.find<NodeDetailComponent>(
-    //   spectator.fixture,
-    //   'app-node-detail'
-    // ).componentInstance;
+    nodeDetailComponentMocks = ngMocks
+      .findAll<NodeDetailComponent>(spectator.fixture, 'app-node-detail')
+      .map(item => item.componentInstance);
 
-    statusFacadeSpy = getFacadeSpy(spectator, StatusFacade, statusSelectors);
+    statusFacadeMock = getFacadeMock(spectator, StatusFacade, statusSelectors);
   });
 
   it('should create the component', async () => {
     expect(component).toBeTruthy();
 
-    statusFacadeSpy.select.isSomeLoading = of(true);
-    statusFacadeSpy.select.nodes = of([]);
+    statusFacadeMock.select.isSomeLoading = of(true);
+    statusFacadeMock.select.nodes = of([]);
 
-    component.ngOnInit();
+    spectator.component.ngOnInit();
 
-    expect(statusFacadeSpy.loadNodes.dispatch).toHaveBeenCalled();
+    expect(statusFacadeMock.loadNodes.dispatch).toHaveBeenCalled();
   });
 
   it('should display spinner when loading', async () => {
-    statusFacadeSpy.select.isSomeLoading = of(true);
-    statusFacadeSpy.select.nodes = of([]);
+    statusFacadeMock.select.isSomeLoading = of(true);
+    statusFacadeMock.select.nodes = of([]);
 
-    component.ngOnInit();
+    spectator.component.ngOnInit();
     spectator.detectComponentChanges();
 
     // find loading spinner
   });
 
   xit('should display nodes when loaded', async () => {
-    statusFacadeSpy.select.isSomeLoading = of(false);
-    statusFacadeSpy.select.nodes = of(TEST_NODES);
+    statusFacadeMock.select.isSomeLoading = of(false);
+    statusFacadeMock.select.nodes = of(TEST_NODES);
 
     // find app-node-details
   });
 
   xit('should dispatch toggleNode when expand', async () => {
-    statusFacadeSpy.select.isSomeLoading = of(false);
-    statusFacadeSpy.select.nodes = of(TEST_NODES);
+    statusFacadeMock.select.isSomeLoading = of(false);
+    statusFacadeMock.select.nodes = of(TEST_NODES);
 
     // find app-node-details
     // click expand
 
-    expect(statusFacadeSpy.toggleNode.dispatch).toHaveBeenCalled();
+    expect(statusFacadeMock.toggleNode.dispatch).toHaveBeenCalled();
   });
 });
