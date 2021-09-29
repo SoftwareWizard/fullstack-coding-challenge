@@ -14,13 +14,22 @@ module.exports = {
     },
   },
   collectCoverage: true,
-  coverageReporters: ["html", "lcov"],
+  collectCoverageFrom: [
+    "src/**/*.ts",
+    "!src/**/app.reducer.ts",
+    "!src/**/*.module.ts",
+    "!src/**/index.ts",
+    "!src/*.ts",
+    "!src/**/*.stories.ts"
+  ],
+  coverageReporters: ["text-summary", "lcov"],
   coverageDirectory: "coverage",
   coveragePathIgnorePatterns: [
     "<rootDir>/node_modules/",
     "<rootDir>/dist/",
     "<rootDir>/e2e/",
     "<rootDir>/test/",
+    "<rootDir>/src/environments/",
   ],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
     prefix: "<rootDir>/",
