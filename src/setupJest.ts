@@ -1,5 +1,6 @@
 import 'jest-preset-angular/setup-jest';
-import 'jest-chain';
+
+// import 'jest-chain';
 
 // import { TestBed } from '@angular/core/testing';
 // import {

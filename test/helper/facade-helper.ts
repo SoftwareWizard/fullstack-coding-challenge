@@ -36,8 +36,8 @@ function populateMock(
     mock[actionName]['dispatch'] = jest.fn();
   });
 
-  const selectorNames = Object.keys(TSelectors);
   mock['select'] = jest.fn();
+  const selectorNames = Object.keys(TSelectors);
 
   selectorNames.forEach((selectorName) => {
     mock['select'][selectorName] = of();
