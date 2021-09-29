@@ -7,11 +7,6 @@ module.exports = {
   roots: ["<rootDir>/src/"],
   testMatch: ["**/+(*.)+(spec).+(ts)"],
   setupFilesAfterEnv: ["<rootDir>/src/setupJest.ts"],
-  testPathIgnorePatterns: [
-    "<rootDir>/node_modules/",
-    "<rootDir>/dist/",
-    "<rootDir>/e2e/",
-  ],
   globals: {
     "ts-jest": {
       tsconfig: "<rootDir>/tsconfig.spec.json",
@@ -21,6 +16,12 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ["html", "lcov"],
   coverageDirectory: "coverage",
+  coveragePathIgnorePatterns: [
+    "<rootDir>/node_modules/",
+    "<rootDir>/dist/",
+    "<rootDir>/e2e/",
+    "<rootDir>/test/",
+  ],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths || {}, {
     prefix: "<rootDir>/",
   }),
