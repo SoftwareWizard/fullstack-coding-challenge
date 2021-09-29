@@ -31,7 +31,8 @@ describe('NodeList Component', () => {
   const createComponent = createComponentFactory({
     component: NodeListComponent,
     mocks: [StatusFacade],
-    declarations: [MockComponent(NodeDetailComponent)]
+    declarations: [MockComponent(NodeDetailComponent)],
+    detectChanges: false
   });
 
   beforeEach(() => {

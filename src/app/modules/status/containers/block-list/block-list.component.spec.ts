@@ -37,8 +37,6 @@ describe('BlockList Component', () => {
     toastrSpy = spectator.inject(ToastrService);
   });
 
-  // app-block-detail
-
   it('should create the component', async () => {
     expect(component).toBeTruthy();
   });
