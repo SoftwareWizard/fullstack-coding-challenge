@@ -1,3 +1,4 @@
+import { cold, hot } from 'jest-marbles';
 import { Observable, of, throwError } from 'rxjs';
 
 import { createServiceFactory, SpectatorService, SpyObject } from '@ngneat/spectator/jest';
@@ -5,11 +6,13 @@ import { getActions } from '@ngrx-ducks/core';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
 
+import { getFacadeMockFromService } from '../../../../../test/helper/facade-helper';
 import { Status } from '../models';
 import { Node } from '../models/node';
 import { NodeService } from '../services/node.service';
 import { StatusEffects } from './status.effects';
 import { StatusFacade } from './status.facade';
+import * as statusSelectors from './status.selectors';
 
 const TEST_NODE_ID = 2;
 const TEST_URL = 'http://testurl.com';
@@ -54,19 +57,36 @@ describe('Effects', function () {
     nodeServiceSpy = spectator.inject(NodeService);
   });
 
-  // xdescribe('loadNodes', () => {
-  //   beforeEach(() => {
-  //     const action = actions.loadNodes();
-  //     actions$ = of(action);
-  //   });
-
-  //   it('should work', () => {
-  //     const statusFacadeMock = getFacadeMockFromService(spectator, StatusFacade, statusSelectors);
-  //     statusFacadeMock.select.nodes = TEST_NODES;
-  //   });
+  // it('Should concatenate two cold observables into single cold observable', () => {
+  //   const a = cold('-a-|');
+  //   const b = cold('-b-|');
+  //   const expected = '-a--b-|';
+  //   expect(a.pipe(concat(b))).toBeMarble(expected);
   // });
 
-  describe('loadNodeStatus', () => {
+  describe('loadNodes', () => {
+    beforeEach(() => {
+    });
+
+    it('should work', async () => {
+      const statusFacadeMock = getFacadeMockFromService(spectator, StatusFacade, statusSelectors);
+      statusFacadeMock.select.nodes = of(TEST_NODES);
+
+      const expectedResult1 = actions.loadNodeStatus({ nodeId: TEST_NODES[0].id, url: TEST_NODES[0].url });
+      const expectedResult2 = actions.loadNodeStatus({ nodeId: TEST_NODES[1].id, url: TEST_NODES[1].url });
+
+      const action = actions.loadNodes();
+      actions$ = hot('--a|', { a: action});
+
+      const expected = cold('--ab|', { a: expectedResult1, b: expectedResult2});
+
+      const result = spectator.service.loadNodes$; //.subscribe(response => console.log(response.payload));
+
+      expect(result).toBeObservable(expected);
+    });
+  });
+
+  xdescribe('loadNodeStatus', () => {
     beforeEach(() => {
       const action = actions.loadNodeStatus({ nodeId: TEST_NODE_ID, url: TEST_URL });
       actions$ = of(action);
