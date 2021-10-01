@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reducer should work for loadNodeStatus: loadNodeStatus 1`] = `
+Object {
+  "nodes": Array [
+    Object {
+      "id": 1,
+      "isExpanded": false,
+      "isLoading": false,
+      "isOnline": undefined,
+      "name": "Node 1",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+    Object {
+      "id": 2,
+      "isExpanded": false,
+      "isLoading": true,
+      "isOnline": undefined,
+      "name": "Node 2",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+  ],
+}
+`;
+
+exports[`Reducer should work for loadNodeStatusFailure: loadNodeStatusFailure 1`] = `
+Object {
+  "nodes": Array [
+    Object {
+      "id": 1,
+      "isExpanded": false,
+      "isLoading": false,
+      "isOnline": undefined,
+      "name": "Node 1",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+    Object {
+      "id": 2,
+      "isExpanded": false,
+      "isLoading": false,
+      "isOnline": false,
+      "name": "Node 2",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+  ],
+}
+`;
+
+exports[`Reducer should work for loadNodeStatusSuccess: loadNodeStatusSuccess 1`] = `
+Object {
+  "nodes": Array [
+    Object {
+      "id": 1,
+      "isExpanded": false,
+      "isLoading": false,
+      "isOnline": undefined,
+      "name": "Node 1",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+    Object {
+      "id": 2,
+      "isExpanded": false,
+      "isLoading": false,
+      "isOnline": true,
+      "name": "testNodeName",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+  ],
+}
+`;
+
+exports[`Reducer should work for loadNodes: loadNodes 1`] = `
+Object {
+  "nodes": Array [
+    Object {
+      "id": 1,
+      "isExpanded": false,
+      "isLoading": false,
+      "isOnline": undefined,
+      "name": "Node 1",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+    Object {
+      "id": 2,
+      "isExpanded": false,
+      "isLoading": false,
+      "isOnline": undefined,
+      "name": "Node 2",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+  ],
+}
+`;
+
+exports[`Reducer should work for toggleNode: toggleNode 1`] = `
+Object {
+  "nodes": Array [
+    Object {
+      "id": 1,
+      "isExpanded": false,
+      "isLoading": false,
+      "isOnline": undefined,
+      "name": "Node 1",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+    Object {
+      "id": 2,
+      "isExpanded": true,
+      "isLoading": false,
+      "isOnline": undefined,
+      "name": "Node 2",
+      "status": undefined,
+      "url": "http://testurl.com",
+    },
+  ],
+}
+`;

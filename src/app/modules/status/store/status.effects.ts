@@ -20,7 +20,7 @@ export class StatusEffects {
   loadNodes$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(statusActions.loadNodes),
-      withLatestFrom(this.statusFacade.select.nodes),
+      withLatestFrom(this.statusFacade.select?.nodes),
       mergeMap(([action, nodes]) =>
         nodes.map(node => statusActions.loadNodeStatus({ nodeId: node.id, url: node.url }))
       )
