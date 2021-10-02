@@ -1,4 +1,5 @@
 import { cold, hot } from 'jest-marbles';
+import { NGXLogger } from 'ngx-logger';
 import { Observable, of, throwError } from 'rxjs';
 
 import { createServiceFactory, SpectatorService, SpyObject } from '@ngneat/spectator/jest';
@@ -48,7 +49,7 @@ describe('Effects', function () {
 
   const createService = createServiceFactory({
     service: StatusEffects,
-    mocks: [StatusFacade, NodeService],
+    mocks: [StatusFacade, NodeService, NGXLogger],
     providers: [provideMockActions(() => actions$)]
   });
 

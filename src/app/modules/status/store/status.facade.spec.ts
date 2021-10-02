@@ -33,7 +33,7 @@ const TEST_INITIAL_STATE = {
 describe('Reducer', () => {
   const facade: StatusFacade = new StatusFacade();
 
-  xit('should return initial State', () => {
+  it('should return initial State', () => {
     const state = statusReducer(TEST_INITIAL_STATE, noopAction);
     expect(state).toMatchSnapshot('initalState');
   });

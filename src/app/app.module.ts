@@ -1,3 +1,5 @@
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,7 +26,10 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    LoggerModule.forRoot({
+      level: NgxLoggerLevel.DEBUG,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

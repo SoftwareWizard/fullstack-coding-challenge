@@ -1,3 +1,4 @@
+import { NGXLogger } from 'ngx-logger';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 
@@ -14,7 +15,8 @@ export class StatusEffects {
   constructor(
     private actions$: Actions,
     private statusFacade: StatusFacade,
-    private nodeService: NodeService
+    private nodeService: NodeService,
+    private logger: NGXLogger
   ) {}
 
   loadNodes$ = createEffect(() => {
@@ -32,12 +34,14 @@ export class StatusEffects {
       ofType(statusActions.loadNodeStatus),
       mergeMap(action =>
         this.nodeService.getStatus(action.payload.url).pipe(
-          map(status =>
-            statusActions.loadNodeStatusSuccess({ status, nodeId: action.payload.nodeId })
-          ),
-          catchError(error =>
-            of(statusActions.loadNodeStatusFailure({ nodeId: action.payload.nodeId }))
-          )
+          map(status => {
+            this.logger.info(`Loaded: ${action.payload.url}`);
+            return statusActions.loadNodeStatusSuccess({ status, nodeId: action.payload.nodeId });
+          }),
+          catchError(error => {
+            this.logger.warn(`Failed to Load: ${action.payload.url}`);
+            return of(statusActions.loadNodeStatusFailure({ nodeId: action.payload.nodeId }));
+          })
         )
       )
     );
